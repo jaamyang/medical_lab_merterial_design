@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}
+    医疗大数据实验室
+{% endblock %}
+
+
+{% block navtitle %}
+    首页
+{% endblock %}
+
+
+{% block content %}
+      <div class="page-content" style="padding: 48px;">
+        <!--主要内容-->
+        <!--实验室简介-->
+        <section class="section-center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <header class="intro-header mdl-cell mdl-cell--4-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone">
+          </header>
+          <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+            <div class="mdl-card__supporting-text intro-text">
+              <h4>医疗大数据实验室</h4>
+              <p>由西安邮电大学牵头，联合北京宣武医院、西安市红会医院、交大二附院等，以“产、学、研、用”的模式组织，开展健康检测与辅助诊断研究工作，研究解决急需的共性理论问题。</p>
+            </div>
+          </div>
+        </section>
+        <!--算法介绍-->
+        <section class="section-center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <header class="algorithm-header mdl-cell mdl-cell--4-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone">
+          </header>
+          <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+            <div class="mdl-card__supporting-text intro-text">
+              <h4>面向大规模数据的进化优化算法</h4>
+              <p>通过分析、模拟人脑的认知机理和自然系统的智能行为和机制，构造相应的学习与优化模型，借助先进的计算工具实现高效的计算智能方法，并用于解决实际工程问题，一直是人工智能研究的重要途径。本方向着重研究大规模数据驱动的进化优化算法及大规模的多目标进化优化模型，同时在人工智能和大数据不断发展的态势下，关注肿瘤预测、目标识别等实际工程问题研究。</p>
+            </div>
+          </div>
+        </section>
+        <section class="section-center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="mdl-card mdl-cell mdl-cell--12-col">
+            <div class="info-set mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+              <h4 class="mdl-cell mdl-cell--12-col" style="margin-bottom: 20px;">信息概览</h4>
+              <div class="sec-icon mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                <i class="material-icons">label</i>
+              </div>
+              <!-- {% for text in texts %}  
+                <div class="info-sec mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                    <a href="#"><h5>{{text.title}}</h5></a>
+                  </div>
+                <div class="sec-icon mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                <i class="material-icons">label</i>
+                </div>
+              {% endfor %} -->
+              {% for text in texts %}
+              <div class="info-sec mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                <h5><strong>{{text.title}}</strong></h5>
+                {{ text.content|safe|striptags|truncatechars:40 }}<a href="{% url 'text_detail' text.pk %}">继续阅读</a>
+              </div>
+              <div class="sec-icon mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                <i class="material-icons">label</i>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="mdl-card__actions">
+              <a href="{% url 'information' %}" class="mdl-button">阅读更多</a>
+            </div>
+          </div>
+        </section>
+        <section class="section-center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="mdl-card mdl-cell mdl-cell--12-col">
+            <div class="help-text mdl-card__supporting-text">
+              <h4>使用帮助</h4>
+              <strong>敬告：本站推荐用 Chrome、Firefox、Microsoft Edge 或 Safari 浏览器打开，不建议使用 Internet Explorer。</strong>
+              <p>左侧为导航栏，右上角放大镜按钮点击后可进行搜索。</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+ {% endblock %}  

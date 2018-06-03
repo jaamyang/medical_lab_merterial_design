@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="医疗大数据实验室">
+  <meta name="generator" content="Atom">
+  <title>医疗大数据实验室</title>
+  <link rel="icon" href="icon\favicon.ico">
+  <link rel="stylesheet" href="css\styles.css">
+  <link rel="stylesheet" href="css\material.cyan-orange.min.css">
+  <link rel="stylesheet" href="css\icon.css">
+</head>
+
+<body>
+
+  <!--无用文件，可删-->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <!--上方导航栏-->
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">医疗大数据实验室</span>
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+          <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
+            <i class="material-icons">search</i>
+          </label>
+          <div class="mdl-textfield__expandable-holder">
+            <input class="mdl-textfield__input" type="text" name="sample" id="fixed-header-drawer-exp" placeholder="搜索下载内容…" pattern="[\s]{0,}[\S]{1,}[\s\S]{0,}">
+            <span class="mdl-textfield__error">不可以为空</span>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!--左侧导航栏-->
+    <div class="mdl-layout__drawer">
+      <!--登录部分-->
+      <header class="drawer-header">
+        <span class="mdl-layout-title" style="padding: 12px 0;">医疗大数据实验室</span>
+        <div class="avator-dropdown">
+          <div style="padding: 6px 0;">
+            <span>登录了的用户名</span>
+          </div>
+          <div class="mdl-layout-spacer"></div>
+          <!--退出按钮-->
+          <button id="quit" class="mdl-button mdl-js-button mdl-button--icon mdl-button--accent">
+            <i class="material-icons">power_settings_new</i>
+          </button>
+          <div class="mdl-tooltip" data-mdl-for="quit">退出</div>
+        </div>
+      </header>
+      <!--导航-->
+      <nav class="mdl-navigation" style="padding-top: 0;">
+        <a class="mdl-navigation__link" href="home.html">
+          <i class="mdl-color-text--blue-grey-400 material-icons">home</i> 主页
+        </a>
+        <a class="mdl-navigation__link" href="members.html">
+          <i class="mdl-color-text--blue-grey-400 material-icons">people</i> 成员介绍
+        </a>
+        <a class="mdl-navigation__link" href="information.html">
+          <i class="mdl-color-text--blue-grey-400 material-icons">rss_feed</i> 科研信息
+        </a>
+        <a class="mdl-navigation__link" href="analysis.html">
+          <i class="mdl-color-text--blue-grey-400 material-icons">bar_chart</i> 分析工具
+        </a>
+        <a class="mdl-navigation__link" href="download.html">
+          <i class="mdl-color-text--blue-grey-400 material-icons">get_app</i> 下载
+        </a>
+      </nav>
+      <!--页脚-->
+      <footer>
+        <p><a href="http://www.xiyou.edu.cn/">西安邮电大学</a></p>
+        <p>联系信息: <a href="mailto:someone@example.com">someone@example.com</a></p>
+        <p>&copy; 医疗大数据实验室</p>
+      </footer>
+    </div>
+    <!--主要内容的格式-->
+    <main class="mdl-layout__content">
+      <div class="page-content" style="margin: 1rem;">
+        <!--主要内容-->
+
+        <!--退出提示-->
+        <div id="quit-info" class="mdl-js-snackbar mdl-snackbar">
+          <div class="mdl-snackbar__text"></div>
+          <button class="mdl-snackbar__action" type="button"></button>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="js\jquery-3.3.1.min.js"></script>
+  <script src="js\material.min.js"></script>
+  <script src="js\snackbar.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}
+    实验室概况
+{% endblock %}
+
+
+{% block navtitle %}
+    实验室概况
+{% endblock %}
+
+
+{% block nav_top %}
+  <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+    <a href="#lab-intro" class="mdl-layout__tab tab-link is-active">实验室介绍</a>
+    <a href="#member-intro" class="mdl-layout__tab tab-link">成员介绍</a>
+  </div>
+{% endblock %}
+
+
+
+{% block content %}
+
+      <!--实验室介绍内容-->
+      <section class="mdl-layout__tab-panel is-active" id="lab-intro">
+        <div class="page-content">
+          <div class="mdl-grid">
+            <div class="mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-700 mdl-cell mdl-cell--12-col" style="padding: 3% 5%; margin: 3% 10%;">
+              <h3 style="text-align: center;">{{ intro.title }}</h3>
+              <p style="text-indent: 22pt;">{{intro.content|safe}}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--成员介绍内容-->
+      <section class="mdl-layout__tab-panel" id="member-intro">
+        <div class="page-content">
+          <div class="mdl-grid" style="padding: 0;">
+            <div class="mdl-cell mdl-cell--5-col mdl-cell--middle over-scroll">
+              <div class="member-card-square mdl-card mdl-shadow--2dp" style="margin: 0 auto;">
+                <div class="mdl-card__title mdl-card--expand">
+                  <h2 class="mdl-card__title-text">邢岿教授</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                  在英国帝国理工大学工作多年，主持欧盟FP7框架项目(EU FP7 CELAR)一项，英国高等教育专项项目(HEFCE)一项，参与欧盟工业项目十二项。在国内外会议期刊上发表学术论文30余篇，获欧盟及德国专利两项。
+                </div>
+              </div>
+            </div>
+            <div class="mdl-cell mdl-cell--7-col mdl-cell--middle mdl-grid mdl-grid--no-spacing">
+              <div class="mdl-grid" style="padding: 0;">
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--middle member-card-image mdl-card mdl-shadow--2dp wei-path">
+                  <div class="mdl-card__title mdl-card--expand"></div>
+                  <div class="mdl-card__actions">
+                    <span class="member-card-image__filename">韦智</span>
+                  </div>
+                </div>
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--middle member-card-image mdl-card mdl-shadow--2dp wang-path">
+                  <div class="mdl-card__title mdl-card--expand"></div>
+                  <div class="mdl-card__actions">
+                    <span class="member-card-image__filename">王家存</span>
+                  </div>
+                </div>
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--middle member-card-image mdl-card mdl-shadow--2dp pan-path">
+                  <div class="mdl-card__title mdl-card--expand"></div>
+                  <div class="mdl-card__actions">
+                    <span class="member-card-image__filename">潘晓英</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mdl-grid" style="padding: 0;">
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--middle member-card-image mdl-card mdl-shadow--2dp xu-path">
+                  <div class="mdl-card__title mdl-card--expand"></div>
+                  <div class="mdl-card__actions">
+                    <span class="member-card-image__filename">许学斌</span>
+                  </div>
+                </div>
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--middle member-card-image mdl-card mdl-shadow--2dp liu-path">
+                  <div class="mdl-card__title mdl-card--expand"></div>
+                  <div class="mdl-card__actions">
+                    <span class="member-card-image__filename">刘伟</span>
+                  </div>
+                </div>
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--middle member-card-image mdl-card mdl-shadow--2dp chen-path">
+                  <div class="mdl-card__title mdl-card--expand"></div>
+                  <div class="mdl-card__actions">
+                    <span class="member-card-image__filename">陈皓</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mdl-grid" style="padding: 0;">
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--middle member-card-image mdl-card mdl-shadow--2dp bai-path">
+                  <div class="mdl-card__title mdl-card--expand"></div>
+                  <div class="mdl-card__actions">
+                    <span class="member-card-image__filename">白琳</span>
+                  </div>
+                </div>
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--middle member-card-image mdl-card mdl-shadow--2dp sun-path">
+                  <div class="mdl-card__title mdl-card--expand"></div>
+                  <div class="mdl-card__actions">
+                    <span class="member-card-image__filename">孙家泽</span>
+                  </div>
+                </div>
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--middle member-card-image mdl-card mdl-shadow--2dp wu-path">
+                  <div class="mdl-card__title mdl-card--expand"></div>
+                  <div class="mdl-card__actions">
+                    <span class="member-card-image__filename">吴旭</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+{% endblock %}

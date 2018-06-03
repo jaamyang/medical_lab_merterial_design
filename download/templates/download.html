@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}
+    资源下载
+{% endblock %}
+
+
+{% block navtitle %}
+    资源下载
+{% endblock %}
+
+
+{% block content %}
+ <div style="margin: 1rem; text-align: center;">
+        <div>
+          <h4>第1页 共{{ page.num_pages }}页</h4>
+        </div>
+        <!--下载内容-->
+        <div class="over-scroll">
+          <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="margin: auto;">
+            <thead>
+              <tr>
+                <th>文件名</th>
+                <th>简述</th>
+                <th>上传时间</th>
+                <th>下载链接</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for file in files %}
+                <tr>
+                  <td>{{file.file_name}}</td>
+                  <td>{{ file.descript }}</td>
+                  <td>{{ file.upload_date }}</td>
+                  <td><a name="download" class="link-style" href="javascript:" onClick="fdownload({{file.pk}})">下载</a></td>
+                </tr>
+              {% endfor %}   
+            </tbody>
+          </table>
+        </div>
+        {% if page.num_pages > 1 %}
+<!--页码导航-->
+        <div class="mdl-grid paginator">
+          <div class="mdl-layout-spacer"></div>
+          <!--首页按钮-->
+          <div class="mdl-cell mdl-cell--middle" style="width: auto;">
+            <a href="?page=1"><button id="first" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+              <i class="material-icons">fast_rewind</i>
+            </button></a>
+            <div class="mdl-tooltip" data-mdl-for="first">首页</div>
+          </div>
+          <!--前页按钮-->
+          
+          <div class="mdl-cell mdl-cell--middle" style="width: auto;">
+            {% if files.has_previous %}
+              <a href="?page={{files.previous_page_number}}">
+                <button id="previous" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                  <i class="material-icons">arrow_left</i>
+                </button>
+              </a>
+            {% else %}
+              <button id="previous" disabled="disabled" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                  <i class="material-icons">arrow_left</i>
+              </button>
+            {% endif %}
+            <div class="mdl-tooltip" data-mdl-for="previous">上一页</div>
+          </div>
+          <!--跳转栏-->
+          <div class="mdl-cell mdl-cell--middle" style="width: auto;">
+            <form action="{% url 'download' %}">
+              <div id="jump" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="max-width: 150px;">
+                <input class="mdl-textfield__input" type="number" min="1" max={{ page.num_pages }} id="sample4" name="page" required>
+                <label class="mdl-textfield__label fix-b-bottom" for="sample4">去哪一页...</label>
+              </div>
+              <div class="mdl-tooltip" data-mdl-for="jump">输入页数后按Enter跳转</div>
+            </form>
+          </div>
+          <!--后页按钮-->
+          <div class="mdl-cell mdl-cell--middle" style="width: auto;">
+            {% if files.has_next %}
+              <a href="?page={{files.next_page_number}}">
+                <button id="next" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                  <i class="material-icons">arrow_right</i>
+                </button>
+              </a>
+            {% else %}
+              <button id="next" disabled="disabled" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                  <i class="material-icons">arrow_right</i>
+              </button>
+            {% endif %}
+            <div class="mdl-tooltip" data-mdl-for="next">下一页</div>
+          </div>
+          <!--尾页按钮-->
+          <div class="mdl-cell mdl-cell--middle" style="width: auto;">
+            <a href="?page={{page.num_pages}}">
+              <button id="last" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                <i class="material-icons">fast_forward</i>
+              </button>
+            </a>
+            <div class="mdl-tooltip" data-mdl-for="last">尾页</div>
+          </div>
+          <div class="mdl-layout-spacer"></div>
+        </div>
+      {% endif %}
+  </div>
+
+{% endblock %}  
+
+
+{% block script %}
+  <script src="{% static 'js/plug-in.js' %}" ></script>
+
+  <script type="text/javascript">
+
+    //jq ajax
+    function fdownload(file_pk){
+      $.ajaxSetup({
+          data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+      });
+      $.ajax({
+          url:"{% url 'file_download'  %}",
+          type:"POST",
+          data:{"file_pk":file_pk},
+          success:function(result, textStatus, jqXHR){
+            if(result == "true"){
+                $.Pop('您没有相关文件的下载权限！请登录或切换账号后重试。',{Animation:'showSweetAlert'});
+              }
+            else{
+                var link=document.createElement('a');
+                link.href = new URL(result,'http://localhost:8000/')
+                link.click();
+                }
+              }               
+      });
+    }
+
+  </script>
+  
+
+
+{% endblock %}
+

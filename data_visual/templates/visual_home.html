@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}
+    数据可视化
+{% endblock %}
+
+
+{% block navtitle %}
+    分析工具
+{% endblock %}
+
+
+{% block content %}
+  <div class="page-content" style="padding-top: 20px;">
+        <!--主要内容-->
+      <div class="over-scroll" style="margin: 0 auto; margin-bottom: 48px;">
+          <div class="mdl-card mdl-shadow--2dp over-scroll" style="margin: 0 auto; width: 832px;">
+            <div class="mdl-card__title mdl-card--border">
+              <h3 class="mdl-card__title-text">欢迎使用分析工具</h3>
+            </div>
+            <!--图表区-->
+            <div class="mdl-card__media mdl-card--border mdl-grid" style="background-color: inherit; padding: 0;">
+              <div id="pie1" class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone" style="width: 400px; height: 400px;"></div>
+              <div id="bar1" class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone" style="width: 400px; height: 400px;"></div>
+            </div>
+            <!--帮助区-->
+            <div class="info-set mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+              <h4 class="mdl-cell mdl-cell--12-col" style="margin-bottom: 20px;">使用帮助</h4>
+              <p class="mdl-cell mdl-cell--12-col">由于当前技术与时间有限，本工具在使用时有以下几点，请注意</p>
+              <p class="mdl-cell mdl-cell--12-col">1、本工具当前仅支持Excel文件</p>
+              <p class="mdl-cell mdl-cell--12-col">2、分析工具Excel表格格式有一定要求，请<a name="download" href="javascript:" onClick="fdownload(21)">下载格式文件</a></p>
+              <p class="mdl-cell mdl-cell--12-col">3、暂不支持多个工作表Excel文件，仅对文件内的第一个工作表进行分析处理</p>
+            </div>
+            <!--上传区-->
+            <div class="mdl-card__actions">
+              <p class="mdl-cell mdl-cell--12-col">请在此上传需要进行分析的Excel文件，若上传后未能给出分析结果，请检查表格格式</p>
+              <form enctype="multipart/form-data" action="{% url 'data_visual_upload' %}" method="POST" style="flex-direction: row; display: flex; padding: 0 32px;">
+                  {% csrf_token %}
+                <input class="" type="file" name="myfile" style="margin: auto 0;"/>
+                <input class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit" value="上传"/>
+              </form>
+            </div>
+          </div>
+      </div>
+
+  </div>
+
+
+{% endblock %}  
+
+
+{% block script %}
+<script src="{% static 'js/echarts.common.min.js' %}"></script>
+<script type="text/javascript">
+
+    var bar1 = echarts.init(document.getElementById('bar1'));
+    var pie1 = echarts.init(document.getElementById('pie1'));
+        // 指定图表的配置项和数据
+        var tall_option_bar = {
+            title: {
+                text: '身高频数直方图',
+                x:'center',
+                
+            },
+            tooltip: {},
+            legend: {
+                data: ['样本例数']
+            },
+            xAxis: {
+                data: ["89.20", "95.89", "102.59", "109.28", "115.98", "122.67", "129.36", "136.06", "142.75", "149.44", "156.14", "162.83", "169.52", "176.22", "182.91", "189.61", "196.30"]
+            },
+            yAxis: {},
+            series: [{
+                name: '人数',
+                type: 'bar',
+                data: [1, 1, 1, 1, 10, 30, 100, 200, 550, 1200, 1900, 2150, 1600, 890, 210, 21, 5]
+            }]
+        };
+
+        var tall_option_pie = {
+
+            title: {
+                text: '身高百分比',
+                left: 'center',
+                
+                textStyle: {
+                    color: '#ccc'
+                }
+            },
+
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+
+            visualMap: {
+                show: false,
+                min: 80,
+                max: 600,
+                inRange: {
+                    colorLightness: [0, 1]
+                }
+            },
+            series: [
+                {
+                    name: '身高',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '50%'],
+                    data: [
+                        {value: 10, name: '89.20'},
+                        {value: 10, name: '95.89'},
+                        {value: 10, name: '102.59'},
+                        {value: 10, name: '109.28'},
+                        {value: 30, name: '115.98'},
+                        {value: 100, name: '122.67'},
+                        {value: 200, name: '129.36'},
+                        {value: 550, name: '136.06'},
+                        {value: 1200, name: '142.75'},
+                        {value: 1900, name: '149.44'},
+                        {value: 2150, name: '156.14'},
+                        {value: 1600, name: '162.83'},
+                        {value: 890, name: '169.52'},
+                        {value: 210, name: '176.22'},
+                        {value: 21, name: '182.91'},
+                        {value: 5, name: '189.61'},
+                    ].sort(function (a, b) {
+                        return a.value - b.value;
+                    }),
+                    roseType: 'radius',
+                    label: {
+                        normal: {
+                           
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            
+                            smooth: 0.2,
+                            length: 10,
+                            length2: 20
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#c23531',
+                            shadowBlur: 200,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    },
+
+                    animationType: 'scale',
+                    animationEasing: 'elasticOut',
+                    animationDelay: function (idx) {
+                        return Math.random() * 200;
+                    }
+                }
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        bar1.setOption(tall_option_bar);
+        pie1.setOption(tall_option_pie);
+ 
+
+
+ //jq ajax 下载模块
+    function fdownload(file_pk){
+      $.ajaxSetup({
+          data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+      });
+      $.ajax({
+          url:"{% url 'file_download'  %}",
+          type:"POST",
+          data:{"file_pk":file_pk},
+          success:function(result, textStatus, jqXHR){
+            if(result == "true"){
+                $.Pop('您没有相关文件的下载权限！请登录或切换账号后重试。',{Animation:'showSweetAlert'});
+              }
+            else{
+                var link=document.createElement('a');
+                link.href = new URL(result,'http://localhost:8000/')
+                link.click();
+                }
+              }               
+      });
+    }
+
+
+</script>
+
+{% endblock %}
+
+
+

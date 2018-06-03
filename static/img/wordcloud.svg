@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="640px" height="480px" viewBox="0 0 640 480">
+<clipPath id="cp2">
+<path d="M 0,0 L 640,0 L640,480 L 0,480 z M 0,0 L 800,0 L 800,600 L 0,600 z" fill-rule="evenodd">
+</path>
+</clipPath>
+<g clip-path="url(#cp2)">
+</g>
+<rect x="0" y="0" width="800" height="600" opacity="1" fill="rgb(255,255,255)" fill-opacity="1" stroke="none">
+</rect>
+<text x="-194.14462280273438" y="4.4018464" style="font: normal 44.018463999999994px Verdana,Geneva,sans-serif" text-anchor="start" dy="17.3986023715415" opacity="1" fill="#a581ff" stroke="none" transform="translate(314, 246) rotate(-9720)">Blood-sugar-level</text>
+<text x="-167.1004180908203" y="4.4018464" style="font: normal 44.018463999999994px Verdana,Geneva,sans-serif" text-anchor="start" dy="17.3986023715415" opacity="1" fill="#fd9720" stroke="none" transform="translate(314, 210) rotate(-15120.000000000002)">Blood-pressure</text>
+<text x="-114.48397827148438" y="4.4018464" style="font: normal 44.018463999999994px Verdana,Geneva,sans-serif" text-anchor="start" dy="17.3986023715415" opacity="1" fill="#a6e22a" stroke="none" transform="translate(314, 282) rotate(-9360.000000000002)">Heart-rate</text>
+<text x="-95.93875885009766" y="4.4018464" style="font: normal 44.018463999999994px Verdana,Geneva,sans-serif" text-anchor="start" dy="17.3986023715415" opacity="1" fill="#a6e22d" stroke="none" transform="translate(322, 178) rotate(-1440)">Medicine</text>
+<text x="-93.63941192626953" y="4.4018464" style="font: normal 44.018463999999994px Verdana,Geneva,sans-serif" text-anchor="start" dy="17.3986023715415" opacity="1" fill="#f92772" stroke="none" transform="translate(332, 318) rotate(-14400)">Big-data</text>
+<text x="-97.07769012451172" y="4.4018464" style="font: normal 44.018463999999994px Verdana,Geneva,sans-serif" text-anchor="start" dy="17.3986023715415" opacity="1" fill="#a6e22d" stroke="none" transform="translate(284, 142) rotate(-9000)">Stomach</text>
+<text x="-68.62591552734375" y="4.4018464" style="font: normal 44.018463999999994px Verdana,Geneva,sans-serif" text-anchor="start" dy="17.3986023715415" opacity="1" fill="#fd9720" stroke="none" transform="translate(332, 354) rotate(-14400)">Artery</text>
+<text x="-72.117919921875" y="4.4018464" style="font: normal 44.018463999999994px Verdana,Geneva,sans-serif" text-anchor="start" dy="17.3986023715415" opacity="1" fill="#fd9720" stroke="none" transform="translate(280, 110) rotate(-13679.999999999998)">Throat</text>
+<text x="-75.05120849609375" y="4.4018464" style="font: normal 44.018463999999994px Verdana,Geneva,sans-serif" text-anchor="start" dy="17.3986023715415" opacity="1" fill="#a581ff" stroke="none" transform="translate(290, 382) rotate(-16920)">Kidney</text>
+<text x="-57.26884460449219" y="4.4018464" style="font: normal 44.018463999999994px Verdana,Geneva,sans-serif" text-anchor="start" dy="17.3986023715415" opacity="1" fill="#a581ff" stroke="none" transform="translate(204, 346) rotate(-4320)">Brain</text>
+<text x="-47.03996276855469" y="4.4018464" style="font: normal 44.018463999999994px Verdana,Geneva,sans-serif" text-anchor="start" dy="17.3986023715415" opacity="1" fill="#66d9ef" stroke="none" transform="translate(178, 310) rotate(-6839.999999999999)">Vein</text>
+<text x="-55.47450256347656" y="4.4018464" style="font: normal 44.018463999999994px Verdana,Geneva,sans-serif" text-anchor="start" dy="17.3986023715415" opacity="1" fill="#a581ff" stroke="none" transform="translate(482, 282) rotate(-8280)">Bone</text>
+<text x="-47.491241455078125" y="4.4018464" style="font: normal 44.018463999999994px Verdana,Geneva,sans-serif" text-anchor="start" dy="17.3986023715415" opacity="1" fill="#fd9720" stroke="none" transform="translate(470, 318) rotate(-14039.999999999998)">Foot</text>
+<text x="-57.387046813964844" y="4.4018464" style="font: normal 44.018463999999994px Verdana,Geneva,sans-serif" text-anchor="start" dy="17.3986023715415" opacity="1" fill="#fd9720" stroke="none" transform="translate(456, 354) rotate(-17280)">Hand</text>
+<text x="-53.80908203125" y="4.4018464" style="font: normal 44.018463999999994px Verdana,Geneva,sans-serif" text-anchor="start" dy="17.3986023715415" opacity="1" fill="#a6e22d" stroke="none" transform="translate(420, 382) rotate(-6839.999999999999)">Lung</text>
+</svg>

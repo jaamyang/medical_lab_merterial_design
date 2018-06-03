@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}
+    实验室动态
+{% endblock %}
+
+
+{% block navtitle %}
+    实验室动态
+{% endblock %}
+
+{% block nav_top %}
+  <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+    <a href="#news-center" class="mdl-layout__tab tab-link is-active">新闻中心</a>
+    <a href="#academic-activity" class="mdl-layout__tab tab-link">学术活动</a>
+    <a href="#scientific-achievement" class="mdl-layout__tab tab-link">科研成果</a>
+    <a href="#announcement" class="mdl-layout__tab tab-link">通知公告</a>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <!--新闻中心内容-->
+  <section class="mdl-layout__tab-panel is-active" id="news-center">
+    <div class="page-content">
+      <ul class="demo-list-icon mdl-list">
+        {% for text in news %}
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              <i class="material-icons mdl-list__item-icon">assignment</i>
+              <a href="{% url 'text_detail' text.pk %}">{{text.title}}</a>
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  <!--学术活动内容-->
+  <section class="mdl-layout__tab-panel" id="academic-activity">
+    <div class="page-content">
+      <ul class="demo-list-icon mdl-list">
+        {% for text in activity %}
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              <i class="material-icons mdl-list__item-icon">event</i>
+              <a href="{% url 'text_detail' text.pk %}">{{text.title}}</a>
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  <!--科研成果内容-->
+  <section class="mdl-layout__tab-panel" id="scientific-achievement">
+    <div class="page-content">
+      <ul class="demo-list-icon mdl-list">
+        {% for text in achievements %}
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              <i class="material-icons mdl-list__item-icon">assistant</i>
+              <a href="{% url 'text_detail' text.pk %}">{{text.title}}</a>
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  <!--通知公告内容-->
+  <section class="mdl-layout__tab-panel" id="announcement">
+    <div class="page-content">
+      <ul class="demo-list-icon mdl-list">
+        {% for text in notice %}
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              <i class="material-icons mdl-list__item-icon">insert_comment</i>
+              <a href="{% url 'text_detail' text.pk %}">{{text.title}}</a>
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+
+{% endblock %}  
+
+
+
+

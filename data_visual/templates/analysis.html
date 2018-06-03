@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}
+    数据可视化
+{% endblock %}
+
+
+{% block navtitle %}
+    分析工具
+{% endblock %}
+
+
+{% block content %}
+  <div class="page-content" style="padding-top: 20px;">
+        <!--主要内容-->
+        <!--图表区-->
+      <div class="over-scroll" style="margin: 0 auto;">
+          <div class="mdl-card mdl-shadow--2dp over-scroll" id="result_div" style="margin: 0 auto; width: 832px;">
+            <div class="mdl-card__title mdl-card--border">
+              <h3 class="mdl-card__title-text">分析结果</h3>
+            </div>
+            <div class="mdl-card__media mdl-card--border mdl-grid" id="result_charts_div" style="background-color: inherit; padding: 0;">
+              <!-- <div id="pie1" class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone" style="width: 400px; height: 400px;"></div>
+              <div id="bar1" class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone" style="width: 400px; height: 400px;"></div>
+              <div id="scatter1" class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone" style="width: 400px; height: 400px;"></div> -->
+            </div>
+          </div>
+      </div>
+
+  </div>
+
+{% endblock %}  
+
+
+{% block script %}
+<script src="{% static 'js/echarts.min.js' %}"></script>
+<script type="text/javascript">
+
+    // var bar1 = echarts.init(document.getElementById('bar1'));
+    // var pie1 = echarts.init(document.getElementById('pie1'));
+    // var scatter1 = echarts.init(document.getElementById('scatter1'));
+    var result_div = document.getElementById('result_div');
+    var result_charts_div = document.getElementById('result_charts_div');
+
+
+    $.get('{% url 'data_process' %}').done(function (data) {
+        // 填入数据
+        
+        if (data.type == 'pie_and_bar'){    // 当图表类型为 条形图和饼状图时进行处理
+
+          var div1 = document.createElement("div");
+          div1.setAttribute("class", "mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone");
+          div1.style.width = '400px';
+          div1.style.height = '400px';
+          result_charts_div.appendChild(div1);
+
+          var div2 = document.createElement("div");
+          div2.setAttribute("class", "mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone");
+          div2.style.width = '400px';
+          div2.style.height = '400px';
+          result_charts_div.appendChild(div2);
+          
+          var bar1 = echarts.init(div1);
+          var pie1 = echarts.init(div2);
+          
+          bar1.setOption({
+              title:{
+                  text: data.bar.title
+              },
+              tooltip: {},
+              toolbox: {
+                  show : true,
+                  feature : {
+                      saveAsImage : {show: true}
+                  }
+              },
+              legend: {
+                  data:[data.bar.present],
+                  x : '60%',
+                  y : 5,
+              },
+              xAxis: {
+                  data: data.bar.name
+              },
+              yAxis: {},
+              series: [{
+                  // 根据名字对应到相应的系列
+                  type: 'bar',
+                  name: data.bar.present,
+                  data: data.bar.data,
+              }]
+          });
+
+
+          pie1.setOption({
+              title:{
+                  text:data.pie.title,
+                  x:'center',
+              },
+              tooltip : {
+                  trigger: 'item',
+                  formatter: "{a} <br/>{b} : {c} ({d}%)"
+              },
+              toolbox: {
+                  show : true,
+                  feature : {
+                      saveAsImage : {show: true}
+                      },
+              },
+              legend: {
+                      x : 'center',
+                      y : '85%',
+                  },
+              series:[{
+                  name:data.pie.unit,
+                  type:'pie',
+                  radius : [30, 110],
+                  center : ['50%', '45%'],
+                  roseType : 'radius',
+                  data:data.pie.data
+              }]
+          });
+      }
+      else if (data.type == 'scatter'){           // 当图表散点图 进行处理
+        
+        result_div.style.width = '700px';
+        var div1 = document.createElement("div");
+        div1.setAttribute("class", "mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone");
+        div1.style.width = '650px';
+        div1.style.height = '600px';
+        result_charts_div.appendChild(div1);
+
+        var scatter1 = echarts.init(div1);
+        scatter1.setOption({ 
+            title:{
+                text:data.title,
+                x:'center',
+            }, 
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross'
+                }
+            }, 
+            toolbox: {
+                show : true,
+                feature : {
+                    saveAsImage : {show: true}
+                }
+            },         
+            xAxis: {
+                scale: true,
+                name: data.xAxis_name,
+            },
+            yAxis: {
+                scale: true,
+                name: data.yAxis_name,
+            },
+            series: [{
+                type:'effectScatter',
+                symbolSize: 15,
+                data: 
+                    data.effect_data,
+            }, {
+                type:'scatter',
+                data:data.scatter_data
+            }]
+        });
+      }
+      else{             // 当图表类型为 簇状柱形图 
+
+        result_div.style.width = '700px';
+        var div1 = document.createElement("div");
+        div1.setAttribute("class", "mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone");
+        div1.style.width = '650px';
+        div1.style.height = '600px';
+        result_charts_div.appendChild(div1);
+
+        var cluster_bar = echarts.init(div1);
+
+       
+        function creat_series(data){       // 动态创建series
+          var items =[];
+          for (var i = 0;i<data.item_num;i++)
+          {
+
+            var obj = {
+              name: data.item_name[i],
+                  type: 'bar',
+                  label: {
+                      normal: {
+                          show: true,
+                          position: 'insideRight'
+                      }
+                  },
+                  data: data.real_data[i],
+            };
+            console.info(obj);
+            items.push(obj);
+          };
+          return items;
+        };
+        var series_data = creat_series(data);
+        console.info(series_data);
+
+        cluster_bar.setOption({
+          title:{
+                text:data.title,
+                x:'center',
+            }, 
+
+          tooltip : {
+              trigger: 'axis',
+              axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                  type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+              }
+          },
+          legend: {
+              x:'6%',
+              top:'7%',
+              data: data.item_name
+          },
+          toolbox: {
+              show: true,
+              orient: 'vertical',
+              left: 'right',
+              top: 'center',
+              feature: {
+                  mark: {show: true},
+                  // dataView: {show: true, readOnly: false},
+                  magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                  saveAsImage: {show: true}
+              }
+          },
+          grid: {
+              left: '3%',
+              right: '6%',
+              bottom: '3%',
+              top:'12%',
+              containLabel: true
+          },
+          xAxis:  {
+              type: 'value'
+          },
+          yAxis: {
+              type: 'category',
+              data: data.clu_name
+          },
+          series: series_data,          
+        });
+      }
+    })
+  
+  </script>
+
+{% endblock %}
+
+
+

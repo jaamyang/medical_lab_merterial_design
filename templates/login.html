@@ -1,0 +1,60 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge"><!--强制IE以Edge模式解析-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="医疗大数据实验室">
+  <meta name="generator" content="Atom">
+  <title>登录</title>
+  <link rel="icon" href="{% static 'icon/favicon.ico' %}">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/material.cyan-orange.min.css' %}"><!--Material Design Lite-->
+  <link rel="stylesheet" href="{% static 'css/icon.css' %}">
+  <script type="text/javascript">
+　　function myfun(y) 　　
+  { 　
+      if(y == true)　{
+        alert("用户名或密码错误！"); 
+      } 
+      　　
+  } 　　　
+  window.onload = myfun({{error_message}});
+  </script>
+  
+</head>
+</head>
+
+<body class="login-body">
+  <div class="form-signin">
+  <h4 class="font-weight-normal">请登录</h4>
+  <form action="{% url 'login' %}" method="POST">
+    <br />{% csrf_token %}<br />
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" name="username" type="text" id="inputUsername" pattern="[\s]{0,}[\S]{1,}[\s\S]{0,}">
+      <label class="mdl-textfield__label fix-b-bottom" for="inputUsername">用户名</label>
+      <span class="mdl-textfield__error">不可以为空</span>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" name="password" type="password" id="inputPassword" pattern="[\S]{6,}">
+      <label class="mdl-textfield__label fix-b-bottom" for="inputPassword">密码</label>
+      <span class="mdl-textfield__error">至少6位</span>
+    </div>
+    <div style="margin: 1rem 0;">
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox">
+        <input type="checkbox" id="checkbox" class="mdl-checkbox__input">
+        <span class="mdl-checkbox__label">记住我</span>
+      </label>
+    </div>
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent" onclick="history.back()">取消</button>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">登录</button>
+    <p class="logo-style">&copy; 医疗大数据实验室</p>
+  </form>
+</div>
+  <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'js/material.min.js' %}"></script>
+</body>
+
+</html>

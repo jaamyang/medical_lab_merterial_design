@@ -1,0 +1,109 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge"><!--强制IE以Edge模式解析-->
+  <meta content="text/html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="医疗大数据实验室">
+  <meta name="keywords" content="医疗,大数据,实验室">
+  <meta name="generator" content="Atom">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="icon" href="{% static 'icon/favicon.ico' %}">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/material.cyan-orange.min.css' %}"><!--Material Design Lite-->
+  <link rel="stylesheet" href="{% static 'css/icon.css' %}">
+
+  {% block style %}{% endblock %}
+</head>
+
+<body>
+
+  <!-- The drawer is always open in large screens. The header is always shown,
+  even in small screens. -->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <!--上方导航栏-->
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">{% block navtitle %}{% endblock %}</span>
+        <div class="mdl-layout-spacer"></div>
+        <form action="{% url 'search' %}" method="GET">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" name="search_key" id="fixed-header-drawer-exp" placeholder="搜索下载内容…" pattern="[\s]{0,}[\S]{1,}[\s\S]{0,}">
+              <span class="mdl-textfield__error">不可以为空</span>
+            </div>
+          </div>
+        </form>
+      </div>
+      {% block nav_top %}{% endblock %}
+    </header>
+    <!--左侧导航栏-->
+    <div class="mdl-layout__drawer">
+      <!--登录部分-->
+      <header class="drawer-header">
+        <span class="mdl-layout-title" style="padding: 12px 0;">医疗大数据实验室</span>
+        <div class="avator-dropdown">
+          {% if request.user.is_authenticated %}
+            <div class="mdl-layout-spacer"></div>
+            <div style="margin: auto 0;">
+              <span>欢迎你，{{ user }}</span>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+            <!--退出按钮-->
+            <a class="dropdown-item" href="{% url 'logout' %}">
+
+              <button id="quit" class="mdl-button mdl-js-button mdl-button--icon mdl-button--accent">
+                <i class="material-icons">power_settings_new</i>
+              </button>
+            </a>
+            <div class="mdl-tooltip" data-mdl-for="quit">退出</div>
+          {% else %}
+            <div class="mdl-layout-spacer"></div>
+            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent" style="text-decoration: none;" href="{% url 'login' %}">登录</a>
+          {% endif %}
+        </div>
+      </header>
+      <!--导航-->
+      <nav class="mdl-navigation" style="padding-top: 0;">
+        <a class="mdl-navigation__link" href="{% url 'home' %}">
+          <i class="mdl-color-text--blue-grey-400 material-icons">home</i> 主页
+        </a>
+        <a class="mdl-navigation__link" href="{% url 'intro' %}">
+          <i class="mdl-color-text--blue-grey-400 material-icons">view_headline</i> 实验室概况
+        </a>
+        <a class="mdl-navigation__link" href="{% url 'information' %}">
+          <i class="mdl-color-text--blue-grey-400 material-icons">style</i> 实验室动态
+        </a>
+        <a class="mdl-navigation__link" href="{% url 'data_visual' %}">
+          <i class="mdl-color-text--blue-grey-400 material-icons">bar_chart</i> 分析工具
+        </a>
+        <a class="mdl-navigation__link" href="{% url 'download' %}">
+          <i class="mdl-color-text--blue-grey-400 material-icons">get_app</i> 资源下载
+        </a>
+      </nav>
+      <!--页脚-->
+      <footer>
+        <p><a href="http://www.xiyou.edu.cn/">西安邮电大学</a></p>
+        <p>联系信息: <a href="mailto:someone@example.com">someone@example.com</a></p>
+        <p>&copy; 医疗大数据实验室</p>
+      </footer>
+    </div>
+    <!--主要内容的格式-->
+    <main class="mdl-layout__content">
+      {% block content %}{% endblock %}
+
+    </main>
+  </div>
+
+  <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'js/material.min.js' %}"></script>
+  <script src="{% static 'js/required-fixer.js' %}" ></script>
+  {% block script %}{% endblock %}
+</body>
+
+</html>

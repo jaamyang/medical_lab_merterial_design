@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}
+    搜索结果
+{% endblock %}
+
+
+{% block navtitle %}
+    搜索结果
+{% endblock %}
+
+
+{% block content %}
+      <div class="page-content mdl-grid mdl-grid--no-spacing">
+        <!--主要内容-->
+        <div class="mdl-cell mdl-cell--7-col" style="padding: 8px;">
+          {% if text_results %}
+          <p style="padding: 16px;">找到了{{ text_results|length}}条搜索结果</p>
+          <hr>
+          <ul class="demo-list-icon mdl-list">
+            {% for result in text_results %}
+            <li class="mdl-list__item">
+              <span class="mdl-list__item-primary-content">
+                <i class="material-icons mdl-list__item-icon">insert_link</i>
+                <a href="{% url 'text_detail' result.pk %}" class="link-style"><p>{{ result.title }}</p></a> 
+              </span>
+            </li>
+            {% endfor %}
+          </ul>
+          {% elif file_results %}
+            <p style="padding: 16px;">找到了{{ file_results|length}}条搜索结果</p>
+            <hr>
+            {% for result in file_results %}
+              <li class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                  <i class="material-icons mdl-list__item-icon">insert_link</i>
+                  <a name="download" class="link-style" href="javascript:" onClick="fdownload({{result.pk}})">{{ result.file_name }}</a>
+                </span>
+              </li>
+            {% endfor %}
+          {% else %}
+            <h3 style = 'text-align: center'>--无相关结果--</h3>
+          {% endif %} 
+        </div>
+        <!--高级搜索-->
+        <div class="mdl-cell mdl-cell--5-col" style="padding-left: 24px;">
+          <h3>高级搜索</h3>
+          <form action="{% url 'search' %}" method="GET">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" name="search_key" id="sample3" pattern="[\s]{0,}[\S]{1,}[\s\S]{0,}">
+              <label class="mdl-textfield__label" for="sample3">搜索...</label>
+              <span class="mdl-textfield__error">不可以为空</span>
+            </div>
+            <div style="padding: 1rem 0;">
+              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                <input type="radio" id="option-1" class="mdl-radio__button" name="condition" value="title" checked>
+                <span class="mdl-radio__label">按标题 </span>
+              </label>
+              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                <input type="radio" id="option-2" class="mdl-radio__button" name="condition" value="author">
+                <span class="mdl-radio__label">按作者 </span>
+              </label>
+              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                <input type="radio" id="option-3" class="mdl-radio__button" name="condition" value="content">
+                <span class="mdl-radio__label">按内容 </span>
+              </label>
+              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
+                <input type="radio" id="option-4" class="mdl-radio__button" name="condition" value="files">
+                <span class="mdl-radio__label">下载资源 </span>
+              </label>
+
+            </div>
+          </form>
+        </div>
+
+      </div>
+ {% endblock %}  
+
+
+
+{% block script %}
+  <script src="{% static 'js/plug-in.js' %}" ></script>
+
+  <script type="text/javascript">
+
+    //jq ajax
+    function fdownload(file_pk){
+      $.ajaxSetup({
+          data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+      });
+      $.ajax({
+          url:"{% url 'file_download'  %}",
+          type:"POST",
+          data:{"file_pk":file_pk},
+          success:function(result, textStatus, jqXHR){
+            if(result == "true"){
+                $.Pop('您没有相关文件的下载权限！请登录或切换账号后重试。',{Animation:'showSweetAlert'});
+              }
+            else{
+                var link=document.createElement('a');
+                link.href = new URL(result,'http://localhost:8000/')
+                link.click();
+                }
+              }               
+      });
+    }
+
+  </script>
+  
+
+
+{% endblock %}

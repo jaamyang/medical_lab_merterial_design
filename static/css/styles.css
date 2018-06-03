@@ -1,0 +1,362 @@
+.title {
+  border-bottom:1px solid #ddd;
+  text-align: center;
+}
+
+/*文章首行缩进*/
+.paragraph {
+  text-indent: 22pt;
+}
+
+.space-style {
+  margin: 1rem;
+}
+
+.card-style {
+  max-width: 300px;
+}
+
+.fix-b-bottom {
+  margin-bottom: auto;
+}
+
+.fix-width {
+  width: auto;
+}
+
+footer {
+  background-color: #EFEFEF;;
+  font-size: 85%;
+  bottom: 0;
+  position: absolute;
+  text-align: left;
+  padding: 10px 16px;
+  color: #6c757d!important;
+}
+/*修正窄屏下左右边距*/
+@media screen and (min-width: 1024px) {
+  footer {
+    padding: 10px 40px;
+  }
+}
+/*修正短屏下导航栏显示不全的情况*/
+@media screen and (max-height: 577px) {
+  footer {
+    position: static;
+  }
+}
+
+/*下划线*/
+.bottom-line {
+  border-bottom:1px solid #ddd;
+}
+
+/*下划线*/
+.input-text {
+  border:1px solid #ffc107;
+}
+
+/*登陆页面居中*/
+.login-body {
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.form-signin {
+  margin: 0 auto;
+  max-width: 330px;
+  padding: 15px;
+  width: 100%;
+}
+
+/*修正左侧导航栏超链接下划线*/
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
+    text-decoration: none;
+}
+/*修正tab超链接下划线*/
+a.tab-link {
+  text-decoration: none;
+}
+
+/*适配不同屏幕宽度的视频尺寸设定*/
+.video-size {
+  height: 100%;
+  object-fit: contain;
+  overflow: hidden;
+  width: 100%;
+}
+@media screen and (min-width: 576px) {
+  .video-size {
+    height: 315px;
+    width: 560px;
+  }
+}
+
+/*限定内容高度至少占整个屏幕*/
+body {
+  min-height:100%;
+  background-color: #f5f5f5 !important;
+}
+
+/*垂直居中*/
+.parent {
+  padding: 5% 0;
+}
+/*修改水平布局*/
+.child {
+  padding: 10% 10%;
+}
+/*不修改水平布局*/
+.child-pure {
+  padding: 10% 0;
+}
+
+.drawer-header {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  text-align: center;
+  background-color: #EFEFEF;;
+}
+
+.avator-dropdown {
+  position: relative;
+  text-align:center;
+  flex-direction: row;
+  display: flex;
+  width: 100%;
+  padding: 10px 0;
+}
+/*修正窄屏下左右边距*/
+@media screen and (min-width: 1024px) {
+  .avator-dropdown {
+    padding: 10px 12px;
+  }
+}
+
+/*修正顶部距离*/
+.no-padding {
+    padding-top: 0;
+}
+
+/* 团队领导介绍卡片设定 */
+.member-card-square.mdl-card {
+  width: 320px;
+  height: 500px;
+}
+.member-card-square > .mdl-card__title {
+  color: #fff;
+  background:
+    url('../img/XingKui.png') center / cover;
+}
+
+/* 团队成员介绍卡片设定 */
+.member-card-image.mdl-card {
+  width: 128px;
+  min-height: 150px;
+
+}
+.member-card-image > .mdl-card__actions {
+  height: 52px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+}
+.member-card-image__filename {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+/*成员图片路径*/
+/*韦智*/
+.member-card-image.wei-path {
+  background: url('../img/WeiZhi.png') center / cover;
+}
+/*王家存*/
+.member-card-image.wang-path {
+  background: url('../img/WangJiacun.png') center / cover;
+}
+
+/*潘晓英*/
+.member-card-image.pan-path {
+  background: url('../img/PanXiaoying.png') center / cover;
+}
+/*许学斌*/
+.member-card-image.xu-path {
+  background: url('../img/XuXuebin.png') center / cover;
+}
+/*刘伟*/
+.member-card-image.liu-path {
+  background: url('../img/LiuWei.png') center / cover;
+}
+/*陈皓*/
+.member-card-image.chen-path {
+  background: url('../img/ChenHao.png') center / cover;
+}
+/*白琳*/
+.member-card-image.bai-path {
+  background: url('../img/BaiLin.png') center / cover;
+}
+/*孙家泽*/
+.member-card-image.sun-path {
+  background: url('../img/SunJiaze.png') center / cover;
+}
+/*吴旭*/
+.member-card-image.wu-path {
+  background: url('../img/WuXu.png') center / cover;
+}
+
+/*实验室介绍卡片设定*/
+.intro-card-square.mdl-card {
+  height: 490px;
+}
+.intro-card-square > .mdl-card__title {
+  color: #fff;
+  background:
+    url('../img/wordcloud.svg') center no-repeat #46B6AC;
+}
+
+/*首页信息卡片设定*/
+.home-card-event {
+  -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+        align-items: flex-start;
+-webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+        align-content: flex-start;
+}
+.home-card-event.mdl-card {
+  height: 240px;
+}
+.home-card-event > .mdl-card__actions {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.home-card-event > .mdl-card__actions {
+  display: flex;
+  box-sizing:border-box;
+  align-items: center;
+}
+.home-card-event > .mdl-card__actions > .material-icons {
+  padding-right: 10px;
+}
+.home-card-event > .mdl-card__supporting-text,
+.home-card-event > .mdl-card__actions,
+.home-card-event > .mdl-card__actions > .mdl-button {
+  color: black;
+}
+/*背景颜色*/
+.home-card-event.card-bg-color {
+  background: rgb(24,255,255);
+}
+
+.home-separator {
+  height: 10px;
+}
+
+.error-content {
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 15px;
+  width: 100%;
+}
+
+.logo-style {
+  color: #6c757d!important;
+  margin-top: 3rem!important;
+  margin-bottom: 1rem!important;
+}
+
+/*左侧导航栏不直接显示时隐藏下方提示*/
+@media screen and (max-width: 1024px) {
+  #quit-info {
+    display: none;
+  }
+}
+
+/*首页设定*/
+.section-center {
+  max-width: 860px;
+  margin-bottom: 48px !important;
+}
+/*简介设定*/
+.intro-text {
+  padding: 16px 30px !important;
+  width: 100% !important;
+  height: 100%;
+}
+.intro-header {
+  background: url('../img/info.jpg') center / cover no-repeat;
+}
+.algorithm-header {
+  background: url('../img/heart.png') center / cover no-repeat;
+}
+/*信息设定*/
+.info-set {
+  padding: 40px !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+.info-sec {
+  padding: 0.5em 0;
+}
+.info-set .info-sec:not(:last-child) {
+  border-bottom: 1px solid rgba(0,0,0,.13);
+}
+.info-sec h5 {
+  font-size: inherit;
+  margin: 0;
+  margin-bottom: 0.5em;
+}
+.sec-icon {
+  padding: 0.5em 0;
+}
+.sec-icon i {
+  font-size: 36px;
+  color: rgb(205, 220, 57);
+}
+.mdl-card .mdl-card__actions {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+.mdl-card .mdl-card__actions a {
+  color: #00BCD4;
+  margin: 0 16px;
+}
+.help-text {
+  padding: 40px !important;
+  width: 100% !important;
+  height: 100%;
+}
+.help-text h4 {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.mdl-radio {
+  margin-right: 10px !important;
+}
+
+/*在窄屏下为显示不全的元素增加滚动条*/
+@media screen and (max-width: 420px) {
+  .over-scroll {
+    overflow-x: auto;
+  }
+}
+
+/*bootstrap中的内容，作用未知*/
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+/* 响应式布局 手机界面页面控制居中*/
+@media (max-width: 479px) {
+  .paginator .mdl-cell {
+    margin: 1px;
+  }
+}
+
+@media (max-width: 479px) {
+  .paginator {
+    padding: 8px 0 !important;
+  }
+}

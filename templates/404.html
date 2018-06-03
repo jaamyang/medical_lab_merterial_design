@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge"><!--强制IE以Edge模式解析-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="医疗大数据实验室">
+  <meta name="generator" content="Atom">
+  <title>404</title>
+  <link rel="icon" href="{% static 'icon/favicon.ico' %}">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/material.cyan-orange.min.css' %}"><!--Material Design Lite-->
+  <link rel="stylesheet" href="{% static 'css/icon.css' %}">
+</head>
+
+<body>
+  <div class="mdl-grid" style="padding: 0;">
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--middle error-content" style="margin: 0 auto;">
+      <h1>啊，是404！</h1>
+      <h3>抱歉，哪里出了问题……</h3>
+      <h5>试试回到<a href="{% url 'home' %}">主页</a>？</h5>
+      <h5>或者<a href="{% url 'login' %}">登录</a>？</h5>
+    </div>
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--middle error-content" style="margin: 0 auto;">
+      <img src="{% static 'img/404.png' %}" style="width: 85%; height: 85%;" alt="心碎的小熊" />
+    </div>
+  </div>
+
+  <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'js/material.min.js' %}"></script>
+</body>
+
+</html>
